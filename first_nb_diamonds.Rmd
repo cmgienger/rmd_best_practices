@@ -14,11 +14,13 @@ output:
 library(tidyverse) #importing, tidying, plotting data
 library(knitr) #making tables
 library(leaflet)
+#library(tinytex) #may need for knitting pdf versions of .rmd file
+
 #knitr::opts_chunk$set(fig.width = 5, fig.asp = 1/3) #force figures to be a certain size and aspect ratio
 #opts_chunk$set(echo=FALSE)   #can force hide all code in the output; disables 'code folding'
 ```
 
-This is an example of an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. This allows you to have a linear workflow, which will help you collaborate with others more efficiently. The basics of R Markdown can be found [here](https://r4ds.had.co.nz/r-markdown.html). 
+This is an example of an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. This allows you to have a linear workflow, which will help you collaborate with others more efficiently. The basics of R Markdown can be found [here](https://r4ds.had.co.nz/r-markdown.html). There is also a cheatsheet in the RStudio help menu.
 
 <span style="color:blue">First, lets make a simple graph using some base R code.</span>
 ```{r Cars Graph}
@@ -40,7 +42,6 @@ anova(model_2)
 ggplot(diamonds, aes(carat, price)) +
   geom_hex()
 
-ggsave("diamonds_md.pdf") #stores .pdf in root level project folder
 ggsave("outputs/diamonds_md.pdf") #ggplot stores it in outputs folder we created previously
 ```
 
