@@ -7,7 +7,6 @@ output:
     df_print: paged
   fig_caption: yes
   html_notebook: default
-  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -23,16 +22,16 @@ This is an example of an [R Markdown](http://rmarkdown.rstudio.com) Notebook. Wh
 
 <span style="color:blue">First, lets make a simple graph using some base R code.</span>
 ```{r Cars Graph}
-model1 <- lm(dist ~ speed, data = cars)
+model_1 <- lm(dist ~ speed, data = cars)
 plot(dist ~ speed, data = cars)
-abline(model1)
+abline(model_1)
 
 ```
 
 <span style="color:blue">Next, we can fit a linear model.</span>
 ```{r Cars Linear Model}
-model2 <- lm(dist ~ speed, data = cars)
-anova(model2)
+model_2 <- lm(dist ~ speed, data = cars)
+anova(model_2)
 ```
 
 <span style="color:blue">Lets remake the graph from the diamonds example, using ggplot2 code.</span>
