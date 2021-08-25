@@ -58,9 +58,9 @@ kable(diamonds[1:20, ], format = "pandoc", caption = 'Table 1. A knitr kable dis
 ```{r Diamond Price Summary}
 summary1 <- summarise(group_by(diamonds, cut),
           n=n(), 
-          mean=mean(price), 
-          sd=sd(price))
-kable(summary1, format = "pandoc", caption = 'Table 2. A summary kable displaying number, mean, and standard deviation for each of five cuts of diamond.')
+          mean=mean(price),
+          sd=sd(price))  
+kable(summary1, caption = 'Table 2. A summary kable displaying number, mean, and standard deviation for each of five cuts of diamond.', digits = c(0, 0, 1, 1))
 ```
 
 <span style="color:blue">Lets insert a static image, like a picture or figure. Notice that this is inline code, not inside a code chunk.</span>
