@@ -49,8 +49,7 @@ We have data about `r nrow(diamonds)` diamonds. The average price is `r mean(dia
 
 ```{r Diamond Table}
 #https://rmarkdown.rstudio.com/lesson-7.html
-kable(diamonds[1:20, ], format = "pandoc", caption = 'Table 1. A knitr kable displaying the first 20 diamonds in the data set.')
-
+kable(diamonds[1:20, ], caption = 'Table 1. A knitr kable displaying the first 20 diamonds in the data set.')
 ```
 
 <span style="color:blue">Lets make a table that summarizes the diamond data.</span>
