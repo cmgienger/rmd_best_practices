@@ -10,11 +10,6 @@ output:
     toc: yes
     toc_depth: 3
     toc_float: yes
-tags:
-- r
-- beginner
-- r-tips
-- data science club
 ---
 
 When learning to write code for research projects, it can be overwhelming to figure out how to set-up a project and the novice programmer may not yet have the experience necessary to forsee potential pitfalls of a given, seemingly inconsequential decision. **This post provides a discussion of best practices[^1] for developing code-based projects and for writing `R` code in a research setting with an eye toward proactively avoiding common pitfalls.** While reading, it is worth keeping in mind that what works for a certain project or with different collaborators will likely vary, but a consistent and well thought out approach to designing project structures and writing code provides a strong base from which to develop subsequent projects.  
@@ -26,23 +21,25 @@ It is good practice to keep all files for a given project in the same project-sp
 
 - Navigate the project contents.  
 - Resume work after a hiatus.  
-- Re-use code in multiple projects.  
+- Re-use code in multiple projects.
+- Collaborate with others.
 
 Here is an example of a basic project layout:
 
 ```
 project  
-    ├── 0_get_data.R
-    ├── 1_preprocess_data.R
-    ├── README.txt
+    ├── 01-project.Rmd
     ├── data  
     ├── doc  
     ├── figs  
-    ├── output  
-    └── src  
+    ├── output
+    ├── project.Rproj
+    ├── README.md
+    └── src
+     
 ```   
 
-Code files are stored in the top level of the `project` directory (e.g. `0_get_data.R` and `1_preprocess_data.R`). Also stored in the top level directory is a `README.txt` file that contains a description of the project and a brief summary of for each file and folder in the project.  
+Code files are stored in the top level of the `project` directory (e.g. `01-project.Rmd`). Also stored in the top level directory is a `README.md` file that contains a description of the project and a brief summary of for each file and folder in the project.  
 
 ### 1.1.1 Folder sub-directories{.tabset .tabset-fade .tabset-pills}
 #### project
@@ -187,17 +184,10 @@ Using `require()` silences warnings that may be necessary for the user to proper
 - A more in-depth account with [_The Git Book_](https://git-scm.com/book/en/v2)  
 
 ## 4.6 Track package versions
-It is a good idea to track package versions used in your code. That way, if anything changes in the package, you will know what version is needed to make your code work. There are a few different ways to track package versions in R Projects. One is [{packrat}](http://rstudio.github.io/packrat/), which when it works provides a snapshot of all your package versions for a project. However, it is difficult to use and can be buggy. Another option still earlyi in development is [{renv}](https://github.com/rstudio/renv), which like {packrat} uses private package libraries to track package versions. {renv} is by developed by RStudio and is therefore likely to provide code base with ongoing maintainence. The third and likely most robust means of version controlling your packages and code environment is [{drake}](https://ropenscilabs.github.io/drake-manual/index.html), which creates a reproducible build system stable across systems and time. While {drake} is probably the best option in terms of reproducibility, it requires a genuine commitment to get up and running that is not for the faint of heart.  
+It is a good idea to track package versions used in your code. That way, if anything changes in the package, you will know what version is needed to make your code work. There are a few different ways to track package versions in R Projects. One is [{packrat}](http://rstudio.github.io/packrat/), which when it works provides a snapshot of all your package versions for a project. However, it is difficult to use and can be buggy. Another option still earlyi in development is [{renv}](https://github.com/rstudio/renv), which like {packrat} uses private package libraries to track package versions. {renv} is by developed by RStudio and is therefore likely to provide code base with ongoing maintenance.  
 
 # 5 Use functions
 If you're copy pasting code with few changes, write a function instead. [Nice R Code](https://nicercode.github.io/guides/functions/) has a good introduction to writing functions for those new to the idea. For a more in-depth introduction to functions, see Hadley Wickham's chapters on functional programming in the [R for Data Science](https://r4ds.had.co.nz/functions.html) book, or see a more in depth discussion in his [Advanced R](https://adv-r.hadley.nz/functionals.html) book. It is generally better to [choose vectorization over loops](https://nicercode.github.io/guides/repeating-things/) as functions require less text and can run more quickly.  
-
-When writing functions: 
-
-- Write simple functions that do only one thing.  
-- Create files of related or single functions.   
-- Document them well.  
-    
 
 # Additional resources
 
