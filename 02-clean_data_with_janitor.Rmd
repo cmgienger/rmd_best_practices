@@ -1,5 +1,5 @@
 ---
-title: "Cleaning Variable Names with Janitor"
+title: "Cleaning Data with Janitor"
 author: "C.M. Gienger"
 date: "`r Sys.Date()`"
 output:
@@ -47,31 +47,37 @@ kable(combined, caption = 'Table 1. A knitr kable displaying the raw vs. cleaned
 ```
 Previous warning message told us the SVL variable is listed twice. Lets remove it and fix SVL label in column 5.
 
-```{r}
+```{r drop duplicate columns}
 data_lizards_clean <- select(data_lizards_clean, -svl_mm_14) %>% #drop column svl_mm_14
   rename(svl_mm = svl_mm_5)
 ```
 
+View cleaned variable names.
+```{r view cleaned variable names}
+names(data_lizards_clean)
+```
+
+
 Lets give the data a quick summary look.
 
-```{r}
-tabyl(data_lizards_clean, species)
+```{r quick table}
+janitor::tabyl(data_lizards_clean, species)
 ```
 OK, looks pretty good. One last thing is to check whether there are any duplicate records that should
 be excluded.
 
-```{r}
+```{r get duplicate records}
 data_lizards_clean %>% janitor::get_dupes(id)
 ```
 
 Can exclude the two duplicates.
 
-```{r}
+```{r use unique records}
 data_lizards_clean <- dplyr::distinct(data_lizards_clean) #takes only the unique observations.
 ```
 Notice that the number of observations went from 251 (with duplicates) to 249 (no duplicates).
 
-```{r}
+```{r view cleaned data}
 head(data_lizards_clean) #first six obs. of cleaned data set; no wonky names, no dupes, consistent formatting
 ```
 
