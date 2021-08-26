@@ -1,0 +1,75 @@
+---
+title: "Cleaning Variable Names with Janitor"
+author: "C.M. Gienger"
+date: "`r Sys.Date()`"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+#Its common to have a setup area to help keep track of required packages and formatting options
+library(tidyverse) #importing, tidying, plotting data
+library(knitr) #making tables
+library(janitor) #cleaning variable names
+library(readxl) #importing data from excel spreadsheets.
+```
+A common best-practice is to make sure variable names have consistent formatting. This includes having
+a common case of text, common delimiters, and removal of punctuation and other nusiance charaters.
+
+Example data are from [Ord and Klomp 2014](https://link.springer.com/content/pdf/10.1007/s00442-014-2921-y.pdf)  
+
+```{r import raw data}
+data_lizards_raw <- read_excel("data/data_morph_lizards.xlsx")
+```
+
+It already detects that we have duplicate column names in the data.
+
+```{r clean the data}
+data_lizards_clean <- read_excel("data/data_morph_lizards.xlsx") %>% 
+  clean_names() %>% #makes variable have consistent formatting and pretty
+  remove_empty(which = c("rows","cols")) # remove both empty columns and rows; happens a lot when importing Excel data
+```
+
+What does this do?
+
+- Returns names with only lowercase letters, with _ as a separator
+- Handles special characters and spaces
+- Appends numbers to duplicated column names
+- Converts “%” to “percent” to retain meaning
+- Removes empty columns and rows that often persist in Excel sheets
+
+Lets compare the raw versus the cleaned data.
+
+```{r echo=FALSE}
+combined <- data.frame(raw = colnames(data_lizards_raw), cleaned = colnames(data_lizards_clean))
+kable(combined, caption = 'Table 1. A knitr kable displaying the raw vs. cleaned data.')
+```
+Previous warning message told us the SVL variable is listed twice. Lets remove it and fix SVL label in column 5.
+
+```{r}
+data_lizards_clean <- select(data_lizards_clean, -svl_mm_14) %>% #drop column svl_mm_14
+  rename(svl_mm = svl_mm_5)
+```
+
+Lets give the data a quick summary look.
+
+```{r}
+tabyl(data_lizards_clean, species)
+```
+OK, looks pretty good. One last thing is to check whether there are any duplicate records that should
+be excluded.
+
+```{r}
+data_lizards_clean %>% janitor::get_dupes(id)
+```
+
+Can exclude the two duplicates.
+
+```{r}
+data_lizards_clean <- dplyr::distinct(data_lizards_clean) #takes only the unique observations.
+```
+Notice that the number of observations went from 251 (with duplicates) to 249 (no duplicates).
+
+```{r}
+head(data_lizards_clean) #first six obs. of cleaned data set; no wonky names, no dupes, consistent formatting
+```
+
