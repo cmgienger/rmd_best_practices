@@ -24,11 +24,12 @@ This is an example of an [R Markdown](http://rmarkdown.rstudio.com) Notebook. Wh
 
 <span style="color:blue">First, lets make a simple graph using some base R code.</span>
 ```{r Cars Graph}
-model_1 <- lm(dist ~ speed, data = cars)
 plot(dist ~ speed, data = cars)
+model_1 <- lm(dist ~ speed, data = cars)
 abline(model_1)
 
 ```
+
 
 <span style="color:blue">Next, we can fit a linear model.</span>
 ```{r Cars Linear Model}
