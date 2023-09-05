@@ -4,6 +4,7 @@ author: "C.M. Gienger"
 date: "`r Sys.Date()`"
 output:
   html_document:
+    self_contained: TRUE
     df_print: paged
 ---
 
@@ -22,7 +23,8 @@ library(hexbin)
 
 This is an example of an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. This allows you to have a linear workflow, which will help you collaborate with others more efficiently. The basics of R Markdown can be found [here](https://r4ds.had.co.nz/r-markdown.html). There is also a cheatsheet in the RStudio help menu.
 
-<span style="color:blue">First, lets make a simple graph using some base R code.</span>
+[First, lets make a simple graph using some base R code.]{style="color:blue"}
+
 ```{r Cars Graph}
 plot(dist ~ speed, data = cars)
 model_1 <- lm(dist ~ speed, data = cars)
@@ -30,14 +32,14 @@ abline(model_1)
 
 ```
 
+[Next, we can fit a linear model.]{style="color:blue"}
 
-<span style="color:blue">Next, we can fit a linear model.</span>
 ```{r Cars Linear Model}
 model_2 <- lm(dist ~ speed, data = cars)
 anova(model_2)
 ```
 
-<span style="color:blue">Lets remake the graph from the diamonds example, using ggplot2 code.</span>
+[Lets remake the graph from the diamonds example, using ggplot2 code.]{style="color:blue"}
 
 ```{r Diamond Graph, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(diamonds, aes(carat, price)) +
@@ -46,18 +48,18 @@ ggplot(diamonds, aes(carat, price)) +
 ggsave("outputs/diamonds_md.pdf") #ggplot stores it in outputs folder we created previously
 ```
 
-*Inline code to use in displaying results.*  
+*Inline code to use in displaying results.*
 
 We have data about `r nrow(diamonds)` diamonds. The average price is `r mean(diamonds$price)` dollars. Diamonds range from `r min(diamonds$price)` to `r max(diamonds$price)` dollars.
 
-<span style="color:blue">Lets make a table that displays some of the raw diamond data.</span>
+[Lets make a table that displays some of the raw diamond data.]{style="color:blue"}
 
 ```{r Diamond Table}
 #https://rmarkdown.rstudio.com/lesson-7.html
 kable(diamonds[1:20, ], caption = 'Table 1. A knitr kable displaying the first 20 diamonds in the data set.')
 ```
 
-<span style="color:blue">Lets make a table that summarizes the diamond data.</span>
+[Lets make a table that summarizes the diamond data.]{style="color:blue"}
 
 ```{r Diamond Price Summary}
 summary1 <- summarise(group_by(diamonds, cut),
@@ -67,11 +69,12 @@ summary1 <- summarise(group_by(diamonds, cut),
 kable(summary1, caption = 'Table 2. A summary kable displaying number, mean, and standard deviation for each of five cuts of diamond.', digits = c(0, 0, 1, 1))
 ```
 
-<span style="color:blue">Lets insert a static image, like a picture or figure. Notice that this is inline code, not inside a code chunk.</span>
+[Lets insert a static image, like a picture or figure. Notice that this is inline code, not inside a code chunk.]{style="color:blue"}
 
 ![Figure 1. Geographic distribution of the Gila Monster (*Heloderma suspectum*)](images/gila_range_map.jpg)
 
-<span style="color:blue">Lets make a simple map for our report.</span>
+[Lets make a simple map for our report.]{style="color:blue"}
+
 ```{r Map}
 leaflet() %>%
   setView(-87.354841, 36.534942, zoom = 16) %>% #lat-long of the place of interest
@@ -79,7 +82,7 @@ leaflet() %>%
   addMarkers(-87.354841, 36.534942, popup = "APSU")
 ```
 
-<span style="color:blue">Lets embed something totally ridiculous, but cool...</span>
+[Lets embed something totally ridiculous, but cool...]{style="color:blue"}
 
-![](https://www.youtube.com/embed/8RXYN0DnYeU){width="90%"}
+<iframe width="610" height="348" src="https://www.youtube.com/embed/8RXYN0DnYeU" data-external= "1" > </iframe>
 
