@@ -29,7 +29,7 @@ There is also a cheatsheet in the RStudio help menu.
 
 [First, lets make a simple graph using some base R code.]{style="color:blue"}
 
-```{r Cars Graph}
+```{r Cars Graph New}
 plot(dist ~ speed, data = cars)
 model_1 <- lm(dist ~ speed, data = cars)
 abline(model_1)
@@ -44,6 +44,9 @@ anova(model_2)
 ```
 
 [Lets remake the graph from the diamonds example, using ggplot2 code.]{style="color:blue"}
+
+```{r}
+```
 
 ```{r Diamond Graph, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(diamonds, aes(carat, price)) +
