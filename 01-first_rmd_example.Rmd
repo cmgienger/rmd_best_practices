@@ -21,7 +21,11 @@ library(hexbin)
 #opts_chunk$set(echo=FALSE)   #can force hide all code in the output; disables 'code folding'
 ```
 
-This is an example of an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. This allows you to have a linear workflow, which will help you collaborate with others more efficiently. The basics of R Markdown can be found [here](https://r4ds.had.co.nz/r-markdown.html). There is also a cheatsheet in the RStudio help menu.
+This is an example of an [R Markdown](http://rmarkdown.rstudio.com) Notebook.
+When you execute code within the notebook, the results appear beneath the code.
+This allows you to have a linear workflow, which will help you collaborate with others more efficiently.
+The basics of R Markdown can be found [here](https://r4ds.had.co.nz/r-markdown.html).
+There is also a cheatsheet in the RStudio help menu.
 
 [First, lets make a simple graph using some base R code.]{style="color:blue"}
 
@@ -50,7 +54,9 @@ ggsave("outputs/diamonds_md.pdf") #ggplot stores it in outputs folder we created
 
 *Inline code to use in displaying results.*
 
-We have data about `r nrow(diamonds)` diamonds. The average price is `r mean(diamonds$price)` dollars. Diamonds range from `r min(diamonds$price)` to `r max(diamonds$price)` dollars.
+We have data about `r nrow(diamonds)` diamonds.
+The average price is `r mean(diamonds$price)` dollars.
+Diamonds range from `r min(diamonds$price)` to `r max(diamonds$price)` dollars.
 
 [Lets make a table that displays some of the raw diamond data.]{style="color:blue"}
 
@@ -84,5 +90,6 @@ leaflet() %>%
 
 [Lets embed something totally ridiculous, but cool...]{style="color:blue"}
 
-<iframe width="610" height="348" src="https://www.youtube.com/embed/8RXYN0DnYeU" data-external= "1" > </iframe>
+<iframe width="610" height="348" src="https://www.youtube.com/embed/8RXYN0DnYeU" data-external="1">
 
+</iframe>
